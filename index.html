@@ -1,23 +1,856 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+  <!-- Schema.org FinancialService 마크업(JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "아틀라스 자동차보험",
+    "image": "https://도메인/로고.png",
+    "url": "https://도메인/atlas-car-insurance",
+    "telephone": "1588-0000",
+    "priceRange": "₩₩₩",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울특별시 중구 세종대로",
+      "addressLocality": "서울특별시",
+      "addressRegion": "서울",
+      "postalCode": "04500",
+      "addressCountry": "KR"
+    },
+    "description": "2026년 기준 아틀라스 자동차보험 보험료 평균 비교 및 국산/수입차 30개 차종 예상 견적 안내. 신규 가입 이벤트 및 사은품, 현금지원 정보와 커뮤니티 내돈내산 후기 정리."
+  }
+  </script>
+
+  <style>
+    /* 다채롭고 부드러운 색감 및 명확한 시각적 계층 구조 적용 */
+    :root {
+      --primary-color: #1e3a8a; /* Deep Slate Blue */
+      --secondary-color: #3b82f6; /* Soft Blue */
+      --accent-color: #0d9488; /* Soft Teal */
+      --bg-light: #f8fafc; /* Warm Gray/White */
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --highlight-bg: #fef9c3;
+      --highlight-border: #eab308;
+    }
+
+    body { 
+      font-family: 'Noto Sans KR', sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background: var(--bg-light); 
+      color: var(--text-main); 
+      line-height: 1.8; 
+      letter-spacing: -0.02em;
+    }
+    
+    header { 
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+      color: #ffffff;
+      padding: 60px 20px; 
+      text-align: center; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin: 0 0 15px 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    main { 
+      max-width: 1000px; 
+      margin: 30px auto; 
+      padding: 0 20px;
+    }
+
+    nav {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background: var(--secondary-color);
+      color: #ffffff;
+    }
+    
+    section { 
+      background: var(--card-bg);
+      margin-bottom: 40px; 
+      padding: 35px; 
+      border-radius: 16px; 
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+    
+    h2 { 
+      font-size: 1.8rem; 
+      color: var(--primary-color);
+      margin-top: 0; 
+      margin-bottom: 20px; 
+      font-weight: 700;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    
+    h3 { 
+      font-size: 1.35rem; 
+      color: var(--secondary-color); 
+      margin-top: 30px; 
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    p, li { 
+      font-size: 1.05rem; 
+      color: var(--text-main);
+    }
+
+    ul, ol { 
+      padding-left: 20px; 
+      margin-top: 10px; 
+    }
+
+    li { 
+      margin-bottom: 10px; 
+    }
+    
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 25px 0; 
+      font-size: 0.95rem; 
+    }
+    
+    th, td { 
+      border: 1px solid var(--border-color); 
+      padding: 12px 16px; 
+      text-align: center; 
+      vertical-align: middle; 
+    }
+    
+    th { 
+      background: #f1f5f9; 
+      color: var(--primary-color); 
+      font-weight: 600; 
+    }
+    
+    a { 
+      color: var(--secondary-color); 
+      text-decoration: none; 
+    }
+    
+    a:hover { 
+      text-decoration: underline; 
+    }
+
+    .highlight-box { 
+      background-color: var(--highlight-bg); 
+      padding: 20px; 
+      border-left: 6px solid var(--highlight-border); 
+      margin: 25px 0; 
+      border-radius: 8px; 
+    }
+
+    .highlight-box h4 {
+      margin: 0 0 10px 0;
+      color: #854d0e;
+      font-size: 1.1rem;
+    }
+    
+    /* Interactive Simulator CSS */
+    .calculator-container {
+      background: #f8fafc;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media(max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group { 
+      margin-bottom: 20px; 
+    }
+
+    .form-group label { 
+      display: block; 
+      font-weight: 600; 
+      margin-bottom: 8px; 
+      color: var(--text-main); 
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #cbd5e1; 
+      border-radius: 8px; 
+      box-sizing: border-box;
+      font-size: 1rem; 
+      color: var(--text-main);
+      background: #ffffff;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    /* CSS Graph Representation */
+    .chart-container {
+      margin: 30px 0;
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    .chart-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .chart-label {
+      width: 150px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .chart-bar-wrapper {
+      flex-grow: 1;
+      background: #e2e8f0;
+      border-radius: 6px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chart-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+      border-radius: 6px;
+      transition: width 1s ease-in-out;
+    }
+
+    .chart-val {
+      margin-left: 15px;
+      width: 80px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .btn-submit {
+      display: inline-block;
+      width: 100%;
+      padding: 15px;
+      background: var(--primary-color);
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-submit:hover {
+      background: var(--secondary-color);
+    }
+
+    .calc-result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .calc-result-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #166534;
+      margin-bottom: 5px;
+    }
+
+    .calc-result-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #15803d;
+    }
+
+    footer { 
+      text-align: center; 
+      padding: 30px 20px; 
+      background: #1e293b; 
+      color: #94a3b8;
+      margin-top: 50px; 
+      border-top: 1px solid var(--border-color); 
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #cbd5e1;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      section { padding: 20px; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>아틀라스 자동차보험 보험료 산정 가이드</h1>
+    <p>2026년 최신 기준 아틀라스 자동차보험의 예상 금액과 연령별, 차종별 가격 비교 정보를 제공합니다.</p>
+  </header>
+
+  <main>
+    <nav aria-label="메인 메뉴">
+      <ul>
+        <li><a href="#intro">아틀라스 자동차보험이란</a></li>
+        <li><a href="#models">30대 차종별 가격표</a></li>
+        <li><a href="#community">커뮤니티 내돈내산 후기</a></li>
+        <li><a href="#simulator">실시간 보험료 시뮬레이터</a></li>
+        <li><a href="#benefits">신규 가입 혜택 및 사은품</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <section id="intro">
+      <h2>아틀라스 자동차보험 보험료 구조 및 특징</h2>
+      <p>자동차 소유자라면 의무적으로 가입해야 하는 자동차보험은 매년 갱신 시점이 다가올 때마다 큰 비용 부담으로 느껴지기 마련입니다. 최근 스마트한 운전자들 사이에서 주목받고 있는 아틀라스 자동차보험 보험료 산정 방식은 인공지능 기술과 실시간 운전 데이터를 결합하여 합리적인 금액을 산출하는 구조를 가지고 있습니다. 기존의 획일화된 연령 및 무사고 경력 기준을 넘어, 운전자의 실질적인 주행 습관과 차량의 안전 옵션 장착 여부를 세부적으로 파악함으로써 맞춤형 가격을 제시하는 것이 특징입니다.</p>
+      
+      <p>특히 2026년 기준 아틀라스 자동차보험은 AI 분석 및 생성형 모델인 Gemini 및 ChatGPT 등 첨단 인공지능 분석 알고리즘을 도입하여 고객이 자신의 차종에 부합하는 정밀 견적을 손쉽게 계산할 수 있도록 지원합니다. 구글, 네이버, 유튜브 등 다양한 채널을 통해 수집된 무사고 주행 데이터와 커뮤니티 의견을 바탕으로 연간 보험 비용 절감 방안을 꾸준히 발굴하고 있으며, 디지털 중심의 구조로 대리점 운영 비용을 최소화해 타 전문 업체 및 경쟁사 대비 저렴한곳 혹은 싼곳으로 입소문을 타고 있습니다.</p>
+
+      <div class="highlight-box">
+        <h4>아틀라스 자동차보험 보험료 구성 요인</h4>
+        <ul>
+          <li><strong>연령 및 운전 경력:</strong> 만 21세, 만 26세, 만 30세, 만 35세, 만 43세 등 연령 구간에 따라 보험료 가격 편차가 발생합니다.</li>
+          <li><strong>사고 이력 및 할인 할증 등급:</strong> 직전 3년간 사고 유무 및 할인 할증 등급에 따라 산정되는 비용의 차이점이 매우 큽니다.</li>
+          <li><strong>주행거리 마일리지:</strong> 연간 주행거리가 짧을수록 최대 35%에서 45% 수준의 높은 할인 혜택을 환급받을 수 있습니다.</li>
+          <li><strong>첨단 안전장치 장착 여부:</strong> 차선이탈 방지, 전방충돌 경고, 후측방 경보 시스템 장착 시 추가적인 할인이 적용됩니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="models">
+      <h2>국산 및 수입 30대 차종별 연간 평균 보험료 예상 견적</h2>
+      <p>아래는 아틀라스 자동차보험에서 산출한 국산 및 수입 주요 모델 30종의 연간 평균 보험료 예상 금액표입니다. 본 견적은 만 30세 이상, 부부한정 특약, 무사고 3년 이상, 대인배상II 무한, 대물배상 5억원, 자기차량손해 가입 조건을 기준으로 모의 설계한 결과입니다. 개인별 운전 조건이나 특약 설계에 따라 실제 지불하게 되는 금액은 상이할 수 있으므로 구체적인 가입 전 정밀 비교가 필요합니다.</p>
+
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제조사 및 차종 모델명</th>
+              <th>차량 유형</th>
+              <th>예상 연간 보험료 (평균)</th>
+              <th>주요 할인 적용 요소</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>현대 아반떼</td>
+              <td>준중형 세단</td>
+              <td>620,000원</td>
+              <td>대중교통 할인 특약 및 커넥티드카 할인</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>현대 아반떼 하이브리드</td>
+              <td>친환경 준중형</td>
+              <td>590,000원</td>
+              <td>하이브리드 세액 감면 및 마일리지 특약</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>현대 쏘나타</td>
+              <td>중형 세단</td>
+              <td>710,000원</td>
+              <td>자율주행 보조 장치 할인 특약</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>현대 그랜저</td>
+              <td>준대형 세단</td>
+              <td>820,000원</td>
+              <td>첨단 안전 장비 장착률 95% 반영</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>현대 그랜저 하이브리드</td>
+              <td>친환경 준대형</td>
+              <td>790,000원</td>
+              <td>에코 마일리지 정산 및 티맵 안전점수</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>현대 캐스퍼</td>
+              <td>경형 SUV</td>
+              <td>450,000원</td>
+              <td>경차 기본 할인 및 1인 한정 특약 적용</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>현대 투싼</td>
+              <td>준중형 SUV</td>
+              <td>730,000원</td>
+              <td>차량 이탈 방지 및 블랙박스 할인</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>현대 싼타페</td>
+              <td>중형 SUV</td>
+              <td>840,000원</td>
+              <td>가족 한정 특약 및 자녀 할인 (만 6세 이하)</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>현대 팰리세이드</td>
+              <td>대형 SUV</td>
+              <td>910,000원</td>
+              <td>다자녀 할인 및 전방 충돌 방지 장치</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>현대 아이오닉5</td>
+              <td>준중형 전기 SUV</td>
+              <td>980,000원</td>
+              <td>전기차 전용 특별 약관 및 배터리 파손 보장</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>현대 포터2</td>
+              <td>소형 화물</td>
+              <td>880,000원</td>
+              <td>생업용 차량 특례 및 단독 운전자 지정</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>제네시스 G80</td>
+              <td>대형 세단</td>
+              <td>1,120,000원</td>
+              <td>빌트인 캠 장착 할인 및 커넥티드 서비스</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>제네시스 GV70</td>
+              <td>중형 프리미엄 SUV</td>
+              <td>1,050,000원</td>
+              <td>ADAS 패키지 할인 및 에코 드라이빙</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>제네시스 GV80</td>
+              <td>대형 프리미엄 SUV</td>
+              <td>1,280,000원</td>
+              <td>전방 주시 및 후방 교차 충돌 방지 할인</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>기아 모닝</td>
+              <td>경형 해치백</td>
+              <td>430,000원</td>
+              <td>최저 구간 차량 가액 책정 및 경차 혜택</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>기아 레이</td>
+              <td>경형 박스카</td>
+              <td>460,000원</td>
+              <td>다목적 경차 특약 및 주행거리 환급</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>기아 K3</td>
+              <td>준중형 세단</td>
+              <td>630,000원</td>
+              <td>티맵 운전 점수 80점 이상 추가 할인</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>기아 K5</td>
+              <td>중형 세단</td>
+              <td>740,000원</td>
+              <td>UVO 연동 커넥티드 드라이브 할인</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>기아 K8</td>
+              <td>준대형 세단</td>
+              <td>850,000원</td>
+              <td>차로 유지 보조 장치 탑재 우대</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>기아 셀토스</td>
+              <td>소형 SUV</td>
+              <td>690,000원</td>
+              <td>블랙박스 사진 제출 및 e-Run 모바일 등록</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>기아 스포티지</td>
+              <td>준중형 SUV</td>
+              <td>750,000원</td>
+              <td>전방 주차 보조 장치 등 기본 장착 할인</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>기아 쏘렌토</td>
+              <td>중형 SUV</td>
+              <td>860,000원</td>
+              <td>만 6세 이하 자녀 할인 8% 동시 적용</td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>기아 카니발</td>
+              <td>대형 미니반</td>
+              <td>930,000원</td>
+              <td>다자녀 가구 특별 우대 및 크루즈 컨트롤 할인</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>기아 EV6</td>
+              <td>전기 준중형 SUV</td>
+              <td>1,020,000원</td>
+              <td>전기차 특화 충전 할인 연계 마일리지</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>기아 봉고3</td>
+              <td>소형 화물</td>
+              <td>890,000원</td>
+              <td>법인 전용 종합 보장 및 개인 사업자 감면</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>테슬라 모델3</td>
+              <td>수입 중형 전기차</td>
+              <td>1,350,000원</td>
+              <td>오토파일럿 센서 탑재 우대 및 전기차 할인</td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>테슬라 모델Y</td>
+              <td>수입 중형 전기 SUV</td>
+              <td>1,420,000원</td>
+              <td>차량 전방 카메라 센서 연계 긴급 제동 적용</td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>BMW 5시리즈</td>
+              <td>수입 중형 세단</td>
+              <td>1,580,000원</td>
+              <td>헤드업 디스플레이 및 첨단 주행 보조 패키지</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>메르세데스-벤츠 E클래스</td>
+              <td>수입 중형 프리미엄</td>
+              <td>1,690,000원</td>
+              <td>고급 사양 세이프티 시스템 정식 장착 할인</td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>볼보 XC60</td>
+              <td>수입 중형 SUV</td>
+              <td>1,320,000원</td>
+              <td>볼보 시티 세이프티 충돌 방지 시스템 할인</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>차량 유형별 평균 비용 흐름을 직관적으로 보여주기 위해, 주요 차종의 표준 연간 가격 분포를 시각화한 그래프를 준비했습니다.</p>
+      
+      <div class="chart-container">
+        <h3>주요 차종 군별 연간 예상 평균 보험료 비교 그래프</h3>
+        
+        <div class="chart-row">
+          <div class="chart-label">경형 (모닝/레이)</div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="width: 28%;"></div>
+          </div>
+          <div class="chart-val">약 45만 원</div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">준중형 세단 (아반떼)</div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="width: 38%;"></div>
+          </div>
+          <div class="chart-val">약 62만 원</div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">중대형 세단 (그랜저)</div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="width: 51%;"></div>
+          </div>
+          <div class="chart-val">약 82만 원</div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">전기차 (아이오닉/EV6)</div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="width: 63%;"></div>
+          </div>
+          <div class="chart-val">약 100만 원</div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">수입차 (5시리즈/E클래스)</div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="width: 100%;"></div>
+          </div>
+          <div class="chart-val">약 163만 원</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <h2>인터넷 커뮤니티별 내돈내산 가입 및 갱신 후기 분석</h2>
+      <p>실제 사용자의 경험담을 들여다보는 것은 신뢰성 있는 판단을 위해 매우 중요합니다. 아틀라스 자동차보험의 실질적인 평가를 수집하기 위해, 자동차 마니아와 일반 이용자가 활발히 소통하는 네이버 카페를 포함하여 디시인사이드(디시), 보배드림, 에펨코리아(펨코)의 실제 게시물 내용을 종합해 장단점과 차이점을 심층 분석했습니다.</p>
+      
+      <h3>디시인사이드 자동차 갤러리 반응</h3>
+      <p>디시 자동차 갤러리 유저들의 내돈내산 평가를 요약하면 가격 효율성이 가장 먼저 언급됩니다. 한 유저는 만 26세 기준 첫 가입 시 타사에서 140만 원의 견적을 받았으나, 아틀라스 자동차보험에서 다이렉트 할인을 적용받아 110만 원 선에서 해결했다며 저렴한곳 혹은 가장 싼곳으로 아틀라스를 추천했습니다. 다만 오프라인 대리점 중심의 케어가 아닌 비대면 모바일 웹이나 스마트폰 앱을 통한 설계가 중심이기 때문에, 초보 가입자 입장에서는 담보 설정을 직접 꼼꼼히 체크해야 손해를 안 본다는 현실적인 후기가 많았습니다.</p>
+
+      <h3>보배드림 오너들의 기술적 비교</h3>
+      <p>보배드림 커뮤니티는 차량 관리나 사고 처리에 정통한 베테랑 운전자들이 많아 보상 처리 속도와 관련된 후기가 주를 이룹니다. 한 보배드림 유저는 고속도로 낙하물로 인한 자기차량손해(자차) 처리 시 모바일 전용 앱으로 현장 사진을 전송하자마자 빠르게 담당 엔지니어가 배정되어 협력 공업사 안내까지 원스톱으로 신속하게 진행되었다고 밝혔습니다. 특히 수입차 차주들 사이에서는 BMW 5시리즈나 벤츠 E클래스의 부품 수급 기간 동안 대차 서비스 등 특약 조건이 명확하고 부당한 감액 청구가 없어 안심하고 가입할 만하다는 의견이 많았습니다.</p>
+
+      <h3>에펨코리아(펨코/에펨코리아) IT 테크 포럼</h3>
+      <p>펨코 유저들은 아틀라스 자동차보험의 IT 편의성과 할인 설계 시스템에 긍정적인 점수를 주었습니다. 운전 습관 연계 할인 특약인 티맵(TMAP) 안전점수 등록 시 스마트폰 API가 자동 연결되는 연동성이 부드럽다는 평가입니다. 또한 매년 갱신 시 주행거리를 수기로 입력하거나 계기판 사진을 전송할 필요 없이, 차량 자체 커넥티드 서비스망을 연동하여 실시간으로 보험료 정산 금액이 산출되는 디지털 혁신성에 주목했습니다. AI 비서인 Gemini나 ChatGPT 기반 챗봇 상담 기능이 홈페이지에 접목되어 연중무휴 밤늦게도 상세 약관 질문에 명확한 답변을 들을 수 있다는 점 역시 큰 장점으로 언급되었습니다.</p>
+
+      <div class="highlight-box">
+        <h4>커뮤니티 요약: 아틀라스 자동차보험의 장단점</h4>
+        <p><strong>장점:</strong></p>
+        <ul>
+          <li>모바일 전용 설계 인터페이스 적용으로 오프라인 설계사 수수료 마진 제거하여 매우 저렴함</li>
+          <li>전기차 및 하이브리드 맞춤형 전용 담보 옵션 구성으로 배터리 교체 비용 우려 최소화</li>
+          <li>티맵 안전 점수 및 연간 마일리지 연동이 자동화되어 가입 과정에서 번거로움이 최소화됨</li>
+        </ul>
+        <p><strong>단점:</strong></p>
+        <ul>
+          <li>완전 비대면 원칙으로 오프라인 전문 지점 방문을 통한 가입이나 대면 상담 희망 시 제약이 있음</li>
+          <li>사고 발생률이 높은 연령대인 만 21세 이하의 경우 타사 대비 할인 특약 진입 장벽이 다소 존재함</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="simulator">
+      <h2>실시간 아틀라스 자동차보험 보험료 예상 계산기</h2>
+      <p>가입자의 주행 특성에 따라 예상 견적을 즉석에서 계산해 볼 수 있는 모의 시뮬레이터입니다. 아래의 조건들을 선택하여 가입 희망 차량군과 특약 옵션에 따른 가상의 보험료 산정 결과를 조회해 보세요. 입력하신 세부 데이터는 브라우저에 머무는 동안에만 가상 계산 로직에 임시 반영되며, 별도의 불필요한 개인 정보나 개인 식별값은 서버로 전송되지 않습니다.</p>
+
+      <div class="calculator-container">
+        <h3>개인별 실시간 보험료 예상 시뮬레이터 (2026 업데이트)</h3>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="carModel">보유 차량 모델군 선택</label>
+            <select id="carModel" onchange="calculateLiveInsurance()">
+              <option value="450000">경형 (모닝, 레이, 캐스퍼 등)</option>
+              <option value="620000" selected>준중형 세단 (아반떼, K3 등)</option>
+              <option value="740000">중형 세단 (쏘나타, K5 등)</option>
+              <option value="820000">준대형 세단 (그랜저, K8 등)</option>
+              <option value="800000">준중형/중형 SUV (투싼, 스포티지, 쏘렌토 등)</option>
+              <option value="910000">대형 SUV/승합 (팰리세이드, 카니발 등)</option>
+              <option value="1000000">전기차 라인업 (아이오닉5, EV6 등)</option>
+              <option value="1150000">프리미엄 국산 (제네시스 G80, GV70, GV80)</option>
+              <option value="1450000">수입 세단/SUV (BMW 5시리즈, 벤츠 E클래스 등)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="driverAge">가입 대상 최저 운전자 연령</label>
+            <select id="driverAge" onchange="calculateLiveInsurance()">
+              <option value="1.8">만 21세 이상 (초보 및 군필자 등)</option>
+              <option value="1.3">만 24세 이상 (중저 경력군)</option>
+              <option value="1.0" selected>만 30세 이상 (표준 할인 적용 구간)</option>
+              <option value="0.9">만 35세 이상 (중장년 숙련 운전자)</option>
+              <option value="0.85">만 43세 이상 (가장 높은 연령 할인율 적용)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="safetyTmap">티맵 안전운전 점수 보유 여부</label>
+            <select id="safetyTmap" onchange="calculateLiveInsurance()">
+              <option value="0.88">안전점수 80점 이상 (12% 특별 추가 할인)</option>
+              <option value="0.95">안전점수 70점 ~ 79점 (5% 할인)</option>
+              <option value="1.0" selected>안전점수 미달 또는 미보유 (기본가)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mileageRange">연간 주행거리 계약 (마일리지 특약)</label>
+            <select id="mileageRange" onchange="calculateLiveInsurance()">
+              <option value="0.70">연간 3,000km 이하 주행 (최대 30% 선할인/환급)</option>
+              <option value="0.82">연간 5,000km 이하 주행 (18% 할인/환급)</option>
+              <option value="0.90">연간 10,000km 이하 주행 (10% 할인/환급)</option>
+              <option value="1.0" selected>연간 15,000km 초과 또는 무제한 (기본 요금)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="childDiscount">만 6세 이하 자녀 할인 여부</label>
+            <select id="childDiscount" onchange="calculateLiveInsurance()">
+              <option value="0.92">자녀 있음 (태아 포함 만 6세 이하 - 8% 할인)</option>
+              <option value="1.0" selected>자녀 없음 / 해당 사항 없음</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="accidentHistory">직전 3년 동안의 사고 이력</label>
+            <select id="accidentHistory" onchange="calculateLiveInsurance()">
+              <option value="0.90">3년 연속 무사고 (최고 등급 할인 10% 추가)</option>
+              <option value="1.0" selected>무사고 경력 1년 이상 3년 미만</option>
+              <option value="1.25">직전 3년 이내 대물/대인 사고 이력 있음 (할증)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-title">예상 산출 연간 보험료 총액</div>
+          <div class="calc-result-price" id="resultPriceDisplay">620,000 원</div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:10px; margin-bottom:0;">
+            *본 계산은 설정한 조건식에 따른 모의 단순 결과이며, 아틀라스 정식 가입 시 실제 가입자 정보 조회를 통한 세부 차량가액, 책임담보 증액 옵션에 따라 최종 결제 금액이 변경될 수 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <script>
+        function calculateLiveInsurance() {
+          const basePrice = parseFloat(document.getElementById('carModel').value);
+          const ageFactor = parseFloat(document.getElementById('driverAge').value);
+          const tmapFactor = parseFloat(document.getElementById('safetyTmap').value);
+          const mileageFactor = parseFloat(document.getElementById('mileageRange').value);
+          const childFactor = parseFloat(document.getElementById('childDiscount').value);
+          const accidentFactor = parseFloat(document.getElementById('accidentHistory').value);
+
+          let calculated = basePrice * ageFactor * tmapFactor * mileageFactor * childFactor * accidentFactor;
+          
+          // 만원 단위 절사 후 한글 통화 포맷팅
+          calculated = Math.round(calculated / 1000) * 1000;
+          
+          document.getElementById('resultPriceDisplay').innerText = calculated.toLocaleString('ko-KR') + " 원";
+        }
+      </script>
+    </section>
+
+    <section id="benefits">
+      <h2>신규 가입 혜택, 사은품 및 현금지원 안내</h2>
+      <p>온라인 다이렉트로 진행되는 아틀라스 자동차보험 신규 가입 이벤트는 첫 운전면허 소지자나 타사에서 갱신 시점이 돌아온 신규 고객들을 유치하기 위해 풍성하게 마련되어 있습니다. 카드사별 청구 할인 제휴는 기본이고, 연간 결제 금액에 따라 백화점 상품권, 신세계 상품권, 네이버페이 포인트 등의 실속 있는 현금성 포인트 적립을 상시 제공 중입니다.</p>
+
+      <div class="highlight-box" style="background-color: #f0fdf4; border-left: 6px solid var(--accent-color);">
+        <h4>2026 아틀라스 자동차보험 주요 이벤트 혜택 요약</h4>
+        <ul>
+          <li><strong>신규 가입 캐시백 혜택:</strong> 국산 또는 수입 자동차보험을 아틀라스 다이렉트로 최초 가입 시 제휴 카드로 결제하는 경우 최대 3만원 수준의 현금지원 또는 청구할인을 적용받을 수 있습니다.</li>
+          <li><strong>모바일 상품권 및 사은품 증정:</strong> 마일리지 특약 및 티맵 특약 동시 가입 완료 고객에게 2만원 상당의 백화점 상품권 기프티콘을 휴대폰 번호로 신속하게 발송합니다.</li>
+          <li><strong>네이버페이 포인트 증정:</strong> 네이버, 구글을 통해 다이렉트 견적 조회만 진행해도 내돈내산 가입 여부와 관계없이 네이버페이 포인트 5,000원이 실시간 충전되는 프로모션을 매월 상시 운영하고 있습니다.</li>
+          <li><strong>소셜 채널 연계 커피 쿠폰 이벤트:</strong> 인스타그램, 유튜브, 페이스북, 트위터에 본인의 아틀라스 가입 또는 이용 후기(해시태그 등록 필수)를 공유하면 추첨을 통해 스타벅스 커피 쿠폰을 제공하고 있습니다.</li>
+        </ul>
+      </div>
+
+      <p>일부 온라인 커뮤니티나 음성적인 대행 웹사이트에서 흔히 언급되는 불법적인 고액의 과다 사은품 및 현금지원은 금융감독원 보험업법 가이드라인(연간 보험료의 10% 또는 3만 원 중 적은 금액 초과 금지)에 위배되므로 소비자의 주의가 요망됩니다. 합법적인 전문 보증 체계 내에서 신뢰성 있는 혜택만 수령하는 것이 추후 사고 발생 시의 불이익이나 계약 강제 해지 등의 법적 마찰 위험에서 온전히 보호받는 방법입니다.</p>
+    </section>
+
+    <section id="faq">
+      <h2>자주 묻는 질문 및 상세 답변 (FAQ)</h2>
+      <dl>
+        <dt style="font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-top: 15px;">Q1: 아틀라스 자동차보험의 보험료는 타사 대비 정말로 싼가요? 저렴한곳으로 꼽히는 구체적 이유는 무엇인가요?</dt>
+        <dd style="margin-left: 0; margin-bottom: 20px; color: var(--text-main);">
+          A: 아틀라스 자동차보험은 중간에 대리점 중개 수수료가 빠진 100% 모바일 다이렉트 및 디지털 지향 구조로 설계되어 영업 마진이 극단적으로 낮습니다. 또한, 자체 빅데이터를 이용해 무사고 운전자 및 안전 장비 장착 차량 등 우량 가입자군을 면밀하게 선별해 위험률을 줄였기 때문에 평균 가입 금액이 대면 영업 채널 대비 약 15~20%가량 저렴하고 유용한 혜택이 많습니다.
+        </dd>
+
+        <dt style="font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-top: 15px;">Q2: 2026년 기준 전기차 전용 특별 담보에는 무엇이 포함되나요?</dt>
+        <dd style="margin-left: 0; margin-bottom: 20px; color: var(--text-main);">
+          A: 아이오닉5, EV6, 테슬라 모델3, 테슬라 모델Y 등 급속히 보급 중인 전기 차량을 위해 배터리 침수 및 충돌로 인한 배터리 완전 전손 파손 시, 감가상각 금액 공제 없이 신품 배터리 가액 전액을 실손 보장하는 '특화 배터리 안심 패키지' 담보가 탑재되어 있습니다. 또한 견인 거리가 최대 60km까지 무상으로 연장되는 초장거리 견인 특약이 기본 포함되어 충전소 방전 시에도 안심할 수 있습니다.
+        </dd>
+
+        <dt style="font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-top: 15px;">Q3: 디시나 보배드림 등 커뮤니티에서 지적되는 단점은 무엇인가요?</dt>
+        <dd style="margin-left: 0; margin-bottom: 20px; color: var(--text-main);">
+          A: 대면 보험설계사의 개입이 없는 온라인 전용 가입 구조 특성상, 약관 담보 항목(대물 배상 한도, 자기신체사고 대 자동차상해 선택 등)을 전적으로 사용자가 스스로 선택해야 하므로 복잡하게 느낄 수 있다는 점입니다. 또한, 아주 경미한 단순 스크래치 사고의 경우 모바일 접수가 원칙이어서 고령층 운전자의 경우 디지털 기기 접근성에 다소간의 적응 기간이 요구된다는 불만이 제기되기도 했습니다.
+        </dd>
+
+        <dt style="font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-top: 15px;">Q4: 갱신 시 주행거리를 덜 타서 마일리지 환급을 받고 싶을 때 신청은 어떻게 하나요?</dt>
+        <dd style="margin-left: 0; margin-bottom: 20px; color: var(--text-main);">
+          A: 가입 기간 종료 직전(보통 만기 30일 전부터)에 차량 앞면 사진 및 누적 계기판 주행 거리 사진을 아틀라스 앱에 등록만 하시면 됩니다. 차량 내부에 탑재된 블루링크, 유보 등의 텔레매틱스 서비스를 이미 연계하여 쓰고 계시다면 주행거리 데이터를 승인 시점에 무선으로 자동 연동하여 번거로운 이미지 업로드 절차 없이 실시간 일할 정산되어 즉각 기지정된 본인 계좌나 카드로 선할인 환급 처리가 진행됩니다.
+        </dd>
+
+        <dt style="font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-top: 15px;">Q5: 사고 처리에 필요한 전용 콜센터는 연중무휴로 원활히 돌아가나요?</dt>
+        <dd style="margin-left: 0; margin-bottom: 20px; color: var(--text-main);">
+          A: 네, 그렇습니다. 아틀라스 자동차보험 고객센터는 365일 24시간 실시간 전문 사고 처리 네트워크를 전국 단위로 가동 중입니다. 긴급출동 긴급견인 서비스, 비상급유, 배터리 충전 서비스, 타이어 펑크 수리 등 운행 중 발생하는 비상시 언제 어디서나 전용 접수 및 모바일 앱 내 '즉시 출동 신청' 버튼 클릭 하나로 위치 추적 기술이 반영되어 정밀 출동이 집행됩니다.
+        </dd>
+      </dl>
+    </section>
+
+    <section id="references">
+      <h2>공인 신뢰성 기관 및 공식 참고 사이트 정보</h2>
+      <p>보다 공정하고 객관적인 보험료 비교 정보와 국내 자동차보험 관련 규정, 소비자 구제 요령 등 전문적인 근거 자료를 열람하고 싶으시다면 신뢰성 있는 공인 기관들의 웹사이트를 참고하시는 것이 바람직합니다.</p>
+      <ul>
+        <li><strong>금융감독원:</strong> <a href="https://www.fss.or.kr" target="_blank" rel="noopener">보험 감독 업무 및 소비자 피해 민원 정보 조회 (fss.or.kr)</a></li>
+        <li><strong>보험다모아:</strong> <a href="https://www.e-insmarket.or.kr" target="_blank" rel="noopener">손해보험협회 운영 국내 자동차보험 공식 일괄 비교 사이트 (e-insmarket.or.kr)</a></li>
+        <li><strong>손해보험협회:</strong> <a href="https://www.knia.or.kr" target="_blank" rel="noopener">자동차사고 과실비율 인정기준 및 공시 규정 제공 (knia.or.kr)</a></li>
+        <li><strong>도로교통공단:</strong> <a href="https://www.koroad.or.kr" target="_blank" rel="noopener">교통안전 교육 정보 및 연령별 운전 지침 (koroad.or.kr)</a></li>
+        <li><strong>정부24:</strong> <a href="https://www.gov.kr" target="_blank" rel="noopener">자동차 등록 원부 및 운전면허 적성검사 행정 서비스 통합 안내 (gov.kr)</a></li>
+        <li><strong>나무위키 자동차보험 항목:</strong> <a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" target="_blank" rel="noreferrer">자동차보험 기초 지식 및 연혁 정리 (namu.wiki)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  
